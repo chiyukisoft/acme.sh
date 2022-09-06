@@ -16,8 +16,6 @@ if [[ -z "${ACME_SH_DEFAULT_CA}" ]]; then
     ACME_SH_DEFAULT_CA=letsencrypt
 fi
 
-ACME_SH_EMAIL=${ACME_SH_EMAIL:-default value}
-
 if [ ! -f /acme.sh/account.conf ]; then
     echo "acme.sh is not initialized yet, run bootstrap steps now."
     echo "set default ca..."
