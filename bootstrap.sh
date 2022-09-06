@@ -25,9 +25,16 @@ if [ ! -f /acme.sh/account.conf ]; then
     echo "set email account..."
     acme.sh --register-account -m ${ACME_SH_EMAIL}
     echo "init request cert for ${DOMAIN_NAME} ..."
-    acme.sh --issue \
+
+    if [ "${ACME_SH_WILDCARD}" = true ]; then
+        acme.sh --issue \
         -d "${DOMAIN_NAME}" -d "*.${DOMAIN_NAME}" \
         --dns "${DNS_API}"
+    else
+        acme.sh --issue \
+        -d "${DOMAIN_NAME}" \
+        --dns "${DNS_API}"
+    fi
 else
     echo "acme.sh is already configured."
 fi
